@@ -33,7 +33,7 @@ const vdtkJsonData = `{ ... }`;
 tracker.loadPayload(vdtkJsonData);
 
 
-**2. Connect to the Media Player Playback Loop**
+**2. Connect to the Media Player Playback Loop.**
 
 Hook the parser layer directly into your HTML5 media node timeupdate handler context:
 
@@ -47,7 +47,7 @@ videoElement.addEventListener("timeupdate", () => {
   });
 });
 
-**License & Ecosystem Architecture**
+**License & Ecosystem Architecture.**
 
 This core metadata schema specification format and client-side parsing script engine are released under the open-source MIT License. Feel free to deploy, modify, and distribute this layout protocol across independent open platforms.
 
