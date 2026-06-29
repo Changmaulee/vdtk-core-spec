@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "VidyoTalk Data Standard (.vdtk)",
+  "description": "Open standard specification for universal video intelligence metadata sidecar files.",
+  "type": "object",
+  "required": ["vdtkVersion", "mediaSignature", "lensTimeline"],
+  "properties": {
+    "vdtkVersion": {
+      "type": "string",
+      "description": "The major/minor release version of the specification standard (e.g., '1.0.0')."
+    },
+    "mediaSignature": {
+      "type": "object",
+      "description": "Cryptographic or source identifier of the target video tracking file.",
+      "required": ["sourceUrl"],
+      "properties": {
+        "sourceUrl": { "type": "string" },
+        "sha256": { "type": "string" }
+      }
+    },
+    "lensTimeline": {
+      "type": "array",
+      "description": "Chronological manifest of deep multi-lens intelligence events.",
+      "items": {
+        "type": "object",
+        "required": ["timestamp", "lensToken", "payload"],
+        "properties": {
+          "timestamp": {
+            "type": "string",
+            "pattern": "^\\d{2}:\\d{2}:\\d{2}\\.\\d{2,3}$",
+            "description": "Exact video timeframe formatted strictly as HH:MM:SS.mm (or .mmm)"
+          },
+          "lensToken": {
+            "type": "string",
+            "enum": ["V_CNTR_06", "V_SPEC_02", "V_MEME_12", "V_KNTK_04"],
+            "description": "The secure, obfuscated classification hash indicating which lens triggered."
+          },
+          "payload": {
+            "type": "object",
+            "required": ["summary"],
+            "properties": {
+              "summary": { "type": "string" },
+              "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
+              "coordinates": {
+                "type": "array",
+                "items": { "type": "number" },
+                "description": "Optional bounding box geometry for frame targets [X, Y, Width, Height]"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
