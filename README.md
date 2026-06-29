@@ -31,3 +31,25 @@ const vdtkJsonData = `{ ... }`;
 
 // Initialize and validate compliance against the formal schema
 tracker.loadPayload(vdtkJsonData);
+
+
+**2. Connect to the Media Player Playback Loop
+Hook the parser layer directly into your HTML5 media node timeupdate handler context:
+
+const videoElement = document.getElementById("target-video-node");
+
+videoElement.addEventListener("timeupdate", () => {
+  // Pass current video progress to trigger automated token lookups
+  tracker.monitorPlayback(videoElement.currentTime, (matchedEvent) => {
+    console.log("Core Target Located:", matchedEvent.payload.summary);
+    // Execute custom UI overlay updates here
+  });
+});
+
+***License & Ecosystem Architecture
+
+This core metadata schema specification format and client-side parsing script engine are released under the open-source MIT License. Feel free to deploy, modify, and distribute this layout protocol across independent open platforms.
+
+Note: This repository provides the open-source data schema standard for parsing .vdtk files. The high-compute ingestion frameworks, deep-inference multi-lens context engines, and proprietary Google AI Studio prompting pipelines used to generate certified .vdtk streams are managed under corporate licensing layers via the VidyoTalk core system.
+
+Developed by Dr. Chang Maulee Labs • Project Portal
